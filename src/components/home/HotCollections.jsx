@@ -1,6 +1,3 @@
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
-
 import axios from "axios";
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
@@ -129,30 +126,30 @@ const HotCollections = () => {
                     </div>
                   </div>
                 ))
-              : collections.map((collection, index) => (
-                  <div className="col-12" key={index}>
+              : collections.map((collection) => (
+                  <div className="col-12" key={collection.nftId}>
                     <div className="nft_coll">
                       <div className="nft_wrap">
-                        <Link to="/item-details">
+                        <Link to={`/item-details/${collection.nftId}`}>
                           <img
                             src={collection.nftImage}
                             className="lazy img-fluid"
-                            alt=""
+                            alt={collection.title}
                           />
                         </Link>
                       </div>
                       <div className="nft_coll_pp">
-                        <Link to="/author">
+                        <Link to={`/author/${collection.authorId}`}>
                           <img
                             className="lazy pp-coll"
-                            src={collection.AuthorImage}
+                            src={collection.authorImage}
                             alt=""
                           />
                         </Link>
                         <i className="fa fa-check"></i>
                       </div>
                       <div className="nft_coll_info">
-                        <Link to="/explore">
+                        <Link to={`/item-details/${collection.nftId}`}>
                           <h4>{collection.title}</h4>
                         </Link>
                         <span>ERC-{collection.code}</span>
