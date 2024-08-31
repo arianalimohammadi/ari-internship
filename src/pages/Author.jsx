@@ -16,10 +16,7 @@ const Author = () => {
     const fetchAuthor = async () => {
       try {
         const response = await axios.get(
-          "https://us-central1-nft-cloud-functions.cloudfunctions.net/author",
-          {
-            params: { authorId: id },
-          }
+          `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${id}`,
         );
         setAuthor(response.data);
       } catch (error) {
@@ -61,10 +58,10 @@ const Author = () => {
                       <i className="fa fa-check"></i>
                       <div className="profile_name">
                         <h4>
-                          {author.name}
-                          <span className="profile_username">@{author.username}</span>
+                          {author.authorName}
+                          <span className="profile_username">@{author.tag}</span>
                           <span id="wallet" className="profile_wallet">
-                            {author.walletAddress}
+                            {author.address}
                           </span>
                           <button id="btn_copy" title="Copy Text">
                             Copy
