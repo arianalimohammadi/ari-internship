@@ -1,8 +1,9 @@
-import axios from "axios";
-import { Link } from "react-router-dom";
-import React, { useState, useEffect } from "react";
-import Slider from "react-slick";
-import Skeleton from "react-loading-skeleton";
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import Slider from 'react-slick';
+import Skeleton from 'react-loading-skeleton';
+import { Link } from 'react-router-dom';
+import { PrevArrow, NextArrow } from "./CustomSliderArrows";
 
 const HotCollections = () => {
   const [collections, setCollections] = useState([]);
@@ -11,12 +12,12 @@ const HotCollections = () => {
   const fetchHotCollections = async () => {
     try {
       const { data } = await axios.get(
-        "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
+        'https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections'
       );
       setCollections(data);
       setLoading(false);
     } catch (error) {
-      console.error("Error fetching hot collections:", error);
+      console.error('Error fetching hot collections:', error);
       setLoading(false);
     }
   };
@@ -24,46 +25,6 @@ const HotCollections = () => {
   useEffect(() => {
     fetchHotCollections();
   }, []);
-
-  const PrevArrow = ({ className, style, onClick }) => (
-    <button
-      className={className}
-      style={{
-        ...style,
-        display: "flex justify-center",
-        width: "30px",
-        height: "30px",
-        borderRadius: "50%",
-        backgroundColor: "gray",
-        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-        cursor: "pointer",
-        zIndex: 1,
-      }}
-      onClick={onClick}
-    >
-      ◀
-    </button>
-  );
-
-  const NextArrow = ({ className, style, onClick }) => (
-    <button
-      className={className}
-      style={{
-        ...style,
-        display: "flex justify-center",
-        width: "30px",
-        height: "30px",
-        borderRadius: "50%",
-        backgroundColor: "gray",
-        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-        cursor: "pointer",
-        zIndex: 1,
-      }}
-      onClick={onClick}
-    >
-      ▶
-    </button>
-  );
 
   const sliderSettings = {
     infinite: true,
@@ -114,14 +75,14 @@ const HotCollections = () => {
                   <div className="col-12" key={index}>
                     <div className="nft_coll">
                       <div className="nft_wrap">
-                        <Skeleton height={200} width={200} />{" "}
+                        <Skeleton height={200} width={200} />
                       </div>
                       <div className="nft_coll_pp">
-                        <Skeleton circle height={40} width={40} />{" "}
+                        <Skeleton circle height={40} width={40} />
                       </div>
                       <div className="nft_coll_info">
-                        <Skeleton height={20} width={120} />{" "}
-                        <Skeleton height={15} width={80} />{" "}
+                        <Skeleton height={20} width={120} />
+                        <Skeleton height={15} width={80} />
                       </div>
                     </div>
                   </div>
