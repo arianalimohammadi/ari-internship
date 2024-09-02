@@ -9,6 +9,7 @@ const Author = () => {
   const [author, setAuthor] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isFollowing, setIsFollowing] = useState(false); 
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -16,7 +17,7 @@ const Author = () => {
     const fetchAuthor = async () => {
       try {
         const response = await axios.get(
-          `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${id}`,
+          `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${id}`
         );
         setAuthor(response.data);
       } catch (error) {
@@ -29,6 +30,21 @@ const Author = () => {
 
     fetchAuthor();
   }, [id]);
+
+  const handleFollowToggle = () => {
+    if (isFollowing) {
+      setAuthor((prevAuthor) => ({
+        ...prevAuthor,
+        followers: prevAuthor.followers - 1,
+      }));
+    } else {
+      setAuthor((prevAuthor) => ({
+        ...prevAuthor,
+        followers: prevAuthor.followers + 1,
+      }));
+    }
+    setIsFollowing(!isFollowing);
+  };
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
@@ -73,9 +89,9 @@ const Author = () => {
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
                       <div className="profile_follower">{author.followers} followers</div>
-                      <Link to="#" className="btn-main">
-                        Follow
-                      </Link>
+                      <button className="btn-main" onClick={handleFollowToggle}>
+                        {isFollowing ? "Unfollow" : "Follow"}
+                      </button>
                     </div>
                   </div>
                 </div>
