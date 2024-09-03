@@ -50,19 +50,23 @@ const ExploreItems = () => {
         </select>
       </div>
 
-      {loading
-        ? new Array(visibleItems).fill(0).map((_, index) => (
-            <div className="col-12 mb-3" key={index}>
-              <Skeleton height={300} />
-              <Skeleton height={20} width="80%" />
-              <Skeleton height={20} width="60%" />
-            </div>
-          ))
-        : items
-            .slice(0, visibleItems)
-            .map((item) => (
-              <ItemContent key={item.nftId} item={item} loading={loading} />
-            ))}
+      <div className="row">
+        {loading
+          ? new Array(visibleItems).fill(0).map((_, index) => (
+              <div className="col-12 col-sm-6 col-md-4 col-lg-3 mb-3" key={index}>
+                <Skeleton height={300} />
+                <Skeleton height={20} width="80%" />
+                <Skeleton height={20} width="60%" />
+              </div>
+            ))
+          : items
+              .slice(0, visibleItems)
+              .map((item) => (
+                <div className="col-12 col-sm-6 col-md-4 col-lg-3 mb-3" key={item.nftId}>
+                  <ItemContent item={item} loading={loading} />
+                </div>
+              ))}
+      </div>
 
       {visibleItems < items.length && (
         <div className="col-md-12 text-center">

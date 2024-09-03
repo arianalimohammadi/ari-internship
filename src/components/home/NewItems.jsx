@@ -3,8 +3,11 @@ import Slider from "react-slick";
 import axios from "axios";
 import ItemContent from "./ItemContent";
 import { PrevArrow, NextArrow } from "./CustomSliderArrows";
+import AOS from "aos";
 
 const NewItems = () => {
+  AOS.init();
+
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -83,17 +86,21 @@ const NewItems = () => {
 
   return (
     <section id="section-items" className="no-bottom">
-      <div className="container">
-        <div className="row">
-          <div className="col-12">
-            <div className="text-center">
-              <h2>New Items</h2>
-              <div className="small-border bg-color-2"></div>
+      <div data-aos="fade-in" data-aos-duration="750">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12">
+              <div className="text-center">
+                <h2>New Items</h2>
+                <div className="small-border bg-color-2"></div>
+              </div>
             </div>
           </div>
           <Slider {...sliderSettings}>
             {items.map((item) => (
-              <ItemContent key={item.nftId} item={item} loading={loading} />
+              <div key={item.nftId}>
+                <ItemContent item={item} loading={loading} />
+              </div>
             ))}
           </Slider>
         </div>
