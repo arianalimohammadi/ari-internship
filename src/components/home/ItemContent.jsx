@@ -25,7 +25,7 @@ const ItemContent = ({ item, loading }) => {
   }
 
   return (
-    <div className="col-12" key={item.nftId} style={{ width: '300px' }}>
+    <div className="col-12 col-sm-6 col-md-4 col-lg-3" key={item.nftId}>
       <div className="nft__item">
         <div className="author_list_pp">
           <Link

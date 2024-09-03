@@ -3,13 +3,14 @@ import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 
 import AuthorItems from "../components/author/AuthorItems";
+import authorBannerImage from "../images/author_banner.jpg";
 
 const Author = () => {
   const { id } = useParams();
   const [author, setAuthor] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [isFollowing, setIsFollowing] = useState(false); 
+  const [isFollowing, setIsFollowing] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -59,8 +60,10 @@ const Author = () => {
           id="profile_banner"
           aria-label="section"
           className="text-light"
-          data-bgimage="url(images/author_banner.jpg) top"
-          style={{ background: `url(${author.authorBanner}) top` }}
+          style={{
+            backgroundImage: `url(${authorBannerImage})`,
+            backgroundPosition: "top",
+          }}
         ></section>
 
         <section aria-label="section">
@@ -75,7 +78,9 @@ const Author = () => {
                       <div className="profile_name">
                         <h4>
                           {author.authorName}
-                          <span className="profile_username">@{author.tag}</span>
+                          <span className="profile_username">
+                            @{author.tag}
+                          </span>
                           <span id="wallet" className="profile_wallet">
                             {author.address}
                           </span>
@@ -88,7 +93,9 @@ const Author = () => {
                   </div>
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
-                      <div className="profile_follower">{author.followers} followers</div>
+                      <div className="profile_follower">
+                        {author.followers} followers
+                      </div>
                       <button className="btn-main" onClick={handleFollowToggle}>
                         {isFollowing ? "Unfollow" : "Follow"}
                       </button>
