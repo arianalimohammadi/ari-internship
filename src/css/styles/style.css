@@ -96,10 +96,6 @@ a.a-underline:hover span {
   width: 100%;
 }
 
-.custom-width {
-  width: 300px; 
-}
-
 /* ================================================== */
 
 /*  header  */
@@ -1188,6 +1184,7 @@ header.header-mobile.header-light #menu-btn {
 .dark-scheme .de-submenu .d-line {
   border-top-color: rgba(255, 255, 255, 0.1);
 }
+
 
 /* ================================================== */
 
